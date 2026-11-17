@@ -1,0 +1,30 @@
+{
+  "name": "remotion-vox-project",
+  "version": "1.0.0",
+  "description": "8-minute collaborative Vox-style video project built with Remotion",
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "@remotion/effects": "4.0.539",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.539",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "10.12.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "render": "remotion render MainVideo out/final_video.mp4",
+    "render:p1": "remotion render Part1 out/part1.mp4",
+    "render:p2": "remotion render Part2 out/part2.mp4",
+    "render:p3": "remotion render Part3 out/part3.mp4",
+    "lint": "tsc --noEmit"
+  }
+}

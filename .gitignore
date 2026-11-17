@@ -1,0 +1,12 @@
+# Remotion output & cache
+out/
+.remotion/
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+npm-debug.log*
