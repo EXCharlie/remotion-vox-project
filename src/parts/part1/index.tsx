@@ -12,6 +12,7 @@ import {
   VoxTitle,
   VOX_TOKENS,
 } from "../../design-system";
+import { Act1 } from "./Act1";
 
 export const PART1_DURATION_IN_FRAMES = 4216; // 00:00 – 02:20.517
 
@@ -24,42 +25,7 @@ export const Part1: React.FC = () => {
           幕 1：一个比 π 更忙的数字（帧 0 – 825，共 7 镜）
          ───────────────────────────────────────────── */}
       <Sequence from={0} durationInFrames={825} name="Act 1 - More Busy Than Pi">
-        <div
-          style={{
-            position: "relative",
-            zIndex: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            paddingTop: 100,
-            width: "100%",
-          }}
-        >
-          <VoxTitle
-            title="一个比 π 更忙的常数"
-            subtitle="ACT 01 · 悄然降临"
-            fontSize={96}
-            accentBarColor={VOX_TOKENS.colors.highlightYellow}
-          />
-
-          <div style={{ marginTop: 60, maxWidth: 960, textAlign: "center" }}>
-            <p
-              style={{
-                fontFamily: VOX_TOKENS.fonts.body,
-                fontSize: 26,
-                color: VOX_TOKENS.colors.textMuted,
-                lineHeight: 1.8,
-              }}
-            >
-              2.718281828……它精确地写在每一次转账、每一次发烧、每一杯放凉的咖啡里。
-            </p>
-            <div style={{ marginTop: 30 }}>
-              <HighlighterText entryFrame={20} fontSize={40}>
-                它最早，是被一笔银行利息算出来的。
-              </HighlighterText>
-            </div>
-          </div>
-        </div>
+        <Act1 />
       </Sequence>
 
       {/* ─────────────────────────────────────────────
