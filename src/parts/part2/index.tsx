@@ -4,6 +4,7 @@
  */
 
 import React from "react";
+import { OpeningShots } from "./OpeningShots";
 import { AbsoluteFill, Sequence } from "remotion";
 import {
   PaperBackground,
@@ -23,7 +24,19 @@ export const Part2: React.FC = () => {
       {/* ─────────────────────────────────────────────
           幕 5：欧拉给它一个字母（相对帧 0 – 2057，共 19 镜）
          ───────────────────────────────────────────── */}
-      <Sequence from={0} durationInFrames={2057} name="Act 5 - Euler & Series">
+      {/* SRT 38: 4216–4342; SRT 39: 4342–4453; hold to SRT 40 at 4459. */}
+      <Sequence
+        from={0}
+        durationInFrames={243}
+        name="5-01 / 5-02 - Clues & Euler"
+      >
+        <OpeningShots />
+      </Sequence>
+      <Sequence
+        from={243}
+        durationInFrames={1814}
+        name="Act 5 - Remaining storyboard placeholder"
+      >
         {/* 背景右上角半色调波点装饰 */}
         <div
           style={{
@@ -61,11 +74,14 @@ export const Part2: React.FC = () => {
                 lineHeight: 1.8,
               }}
             >
-              e 并不是欧拉姓氏的首字母。更可能只是 exponential 或下一个可用符号。
+              e 并不是欧拉姓氏的首字母。更可能只是 exponential
+              或下一个可用符号。
             </p>
 
             <div style={{ marginTop: 30 }}>
-              <span style={{ fontSize: 24, fontWeight: 700 }}>欧拉级数手算 18 位：</span>
+              <span style={{ fontSize: 24, fontWeight: 700 }}>
+                欧拉级数手算 18 位：
+              </span>
               <div style={{ marginTop: 10 }}>
                 <HighlighterText entryFrame={15} fontSize={38}>
                   2.718281828459045235
@@ -79,7 +95,11 @@ export const Part2: React.FC = () => {
       {/* ─────────────────────────────────────────────
           幕 6：为什么是「自然」的（相对帧 2057 – 3536，共 13 镜）
          ───────────────────────────────────────────── */}
-      <Sequence from={2057} durationInFrames={1479} name="Act 6 - Derivative & Natural">
+      <Sequence
+        from={2057}
+        durationInFrames={1479}
+        name="Act 6 - Derivative & Natural"
+      >
         <div
           style={{
             position: "relative",

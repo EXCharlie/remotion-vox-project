@@ -9,6 +9,7 @@
 ## 2 大幕次分段与核心任务
 
 ### 1. 幕 5 · 欧拉给它一个字母（帧 0 – 2057，19 镜）
+
 - **四大关键年份**：
   - 1727（起用 e）➔ 1731（致信哥德巴赫）➔ 1736（《力学》印刷）➔ 1748（《无穷分析引论》整套写下）。
 - **🚨 核心辟谣：命名之谜**：
@@ -20,6 +21,7 @@
   - **欧拉手算出 18 位小数**：`2.718281828459045235`，彻底填满伯努利的区间。
 
 ### 2. 幕 6 · 为什么是「自然」的（帧 2057 – 3536，13 镜）
+
 - **核心数学性质（导数曲线）**：
   - `d(eˣ)/dx = eˣ`：它在任何一点的切线斜率，恰好等于它的函数值！
   - 别的底数都会拖出 `ln a` 系数，唯独 e 极其纯粹。
@@ -31,7 +33,36 @@
 ---
 
 ## 推荐调用的 Vox 积木
+
 - `<VoxTitle>`（特粗报刊主标题）
 - `<HalftoneLayer>`（红/深蓝半色调波点背景，营造欧拉手稿质感）
 - `<TornPaperCutout>`（欧拉肖像剪报白边效果）
 - `<HighlighterText>`（高亮标注 18 位小数）
+
+## 已实现：开场两镜
+
+以 `src/data/subtitles.ts` 第 38–40 句的全局帧，减去 Part2 起点 4216，得到本地切点：
+
+| 镜号 | Part2 相对帧（左闭右开） | 内容                                                   |
+| ---- | ------------------------ | ------------------------------------------------------ |
+| 5-01 | [0, 126)                 | 对数表、双曲线面积、复利极限三张剪报拍入，青绿连线汇合 |
+| 5-02 | [126, 243)               | 同一桌面上淡化线索，揭示欧拉姓名与荧光黄字母 e         |
+
+第 39 句在相对第 237 帧结束；第二镜保持 6 帧，衔接第 40 句起点 243。
+`OpeningShots.tsx` 负责两个连续镜头；243 帧之后保留原有占位，尚未实现后续分镜。Part2 总时长仍是 3536 帧。
+
+### 本次协作流程
+
+1. 从干净的主线检出 `feature/part2` 分支，只改本目录和自己的素材目录。
+2. `npm run dev -- --host=0.0.0.0 --port=3000 --no-open`，在 Studio 选择 Part2；音轨和字幕由外层注入。
+3. `npm run lint`，再执行 `npm run build -- --out-dir=out/bundle`。
+4. 抽帧检查构图与字幕安全区：
+   ```bash
+   npx --no-install remotion still Part2 /tmp/part2-shot1.png --frame=110 --browser-executable=/usr/bin/chromium
+   npx --no-install remotion still Part2 /tmp/part2-shot2.png --frame=200 --browser-executable=/usr/bin/chromium
+   ```
+5. `git diff --check`，检查 `git status --short` 和提交差异仅包含本人负责文件，再暂存并提交。
+6. 首次推送：`git push -u origin feature/part2`；后续在同一分支提交后 `git push`。
+7. 在 GitHub 比较 `main...feature/part2` 并创建 Pull Request，由组长审阅合并。
+
+不要把渲染输出、大素材或依赖目录提交到 Git，也不要把组员分支直接推到 main。
