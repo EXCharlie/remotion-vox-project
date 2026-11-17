@@ -5,3 +5,4 @@ export * from "./components/VoxTitle";
 export * from "./components/TornPaperCutout";
 export * from "./components/HalftoneLayer";
 export * from "./components/HistoryTimeline";
+export * from "./components/VoxSubtitles";

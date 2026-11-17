@@ -98,13 +98,17 @@ import { TornPaperCutout } from "../../design-system";
 ## 🛡️ 团队防冲突开发守则（请务必遵守！）
 
 1. **各自守好自留地**：
-   - 同学 A 只修改：`src/parts/part1/` 与 `public/assets/part1/`
-   - 同学 B 只修改：`src/parts/part2/` 与 `public/assets/part2/`
-   - 同学 C 只修改：`src/parts/part3/` 与 `public/assets/part3/`
+   - 同学 1 只修改：`src/parts/part1/` 与 `public/assets/part1/`
+   - 同学 2 只修改：`src/parts/part2/` 与 `public/assets/part2/`
+   - 同学 3 只修改：`src/parts/part3/` 与 `public/assets/part3/`
    - **不要私自修改** `src/MainVideo.tsx` 和根目录配置文件。
-2. **大素材文件不要提交 Git**：
+2. **音频与字幕全局统一管理（组员无需手写字幕/音频）**：
+   - 配音与 100 句完整 SRT 字幕已统一存放在 `public/assets/shared/`，由主控层统一注入；
+   - **请勿在各自的 `src/parts/partX/` 中引入 `<Audio>` 或自制字幕**，防止合并时产生双重音轨或样式冲突；
+   - **单人调试无忧**：在本地运行 `npm run dev` 后，在 Studio 侧边栏点击你的 `PartX`，系统已**自动为你挂载了当前片段对应的原声配音与同步字幕**，方便精准卡点！
+3. **大素材文件不要提交 Git**：
    - 如果有超过 50MB 的未压缩高清视频或音频，请通过网盘同步给组长，不要直接 push 到 GitHub。
-3. **分辨率与帧率锁死**：
+4. **分辨率与帧率锁死**：
    - 全片统一为 **1920x1080**、**30 fps**。
 
 ---

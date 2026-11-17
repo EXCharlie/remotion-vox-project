@@ -17,7 +17,10 @@
      - ❌ `src/Root.tsx`
      - ❌ `src/design-system/`（公共设计规范，只读引用）
      - ❌ 其他同学的 `parts/` 文件夹
-2. **依赖安装铁律（严禁 `npm install` 随意加包）**：
+2. **严禁在 Part 内写音频和字幕（外层已统一托管）**：
+   - **绝对禁止**在 `src/parts/partX/` 内引入 `<Audio>` 标签或硬编码手写字幕组件。
+   - 官方配音与字幕已由 `src/Root.tsx`（单人测试）与 `src/MainVideo.tsx`（总片成片）在外层统一按时间码注入。组员专心实现画面动效即可。
+3. **依赖安装铁律（严禁 `npm install` 随意加包）**：
    - 本项目依赖已被严格锁定（Remotion `4.0.539`）。
    - **绝不允许**向组员建议 `npm install xxx` 安装额外的动画库或图表库。所有动效一律使用 Remotion 原生 API（`spring`, `interpolate`, `useCurrentFrame`）和 `@/design-system` 里的积木。
 

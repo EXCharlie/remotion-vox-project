@@ -1,8 +1,9 @@
 import React from "react";
-import { AbsoluteFill, Sequence } from "remotion";
+import { AbsoluteFill, Sequence, Audio, staticFile } from "remotion";
 import { Part1, PART1_DURATION_IN_FRAMES } from "./parts/part1";
 import { Part2, PART2_DURATION_IN_FRAMES } from "./parts/part2";
 import { Part3, PART3_DURATION_IN_FRAMES } from "./parts/part3";
+import { VoxSubtitles } from "./design-system";
 
 // 总片时长严格锁定 11220 帧（06:14 @ 30fps）
 export const TOTAL_DURATION_IN_FRAMES =
@@ -17,7 +18,10 @@ export const MainVideo: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
-      {/* 第 1 个人负责：幕 1 ～ 幕 4（00:00 – 02:20.517，共 4216 帧 / 37 镜） */}
+      {/* 1. 全片统一音频（公共文件夹下） */}
+      <Audio src={staticFile("assets/shared/audio.wav")} />
+
+      {/* 2. 第 1 个人负责：幕 1 ～ 幕 4（00:00 – 02:20.517，共 4216 帧 / 37 镜） */}
       <Sequence
         from={part1Start}
         durationInFrames={PART1_DURATION_IN_FRAMES}
@@ -26,7 +30,7 @@ export const MainVideo: React.FC = () => {
         <Part1 />
       </Sequence>
 
-      {/* 第 2 个人负责：幕 5 ～ 幕 6（02:20.517 – 04:18.384，共 3536 帧 / 32 镜） */}
+      {/* 3. 第 2 个人负责：幕 5 ～ 幕 6（02:20.517 – 04:18.384，共 3536 帧 / 32 镜） */}
       <Sequence
         from={part2Start}
         durationInFrames={PART2_DURATION_IN_FRAMES}
@@ -35,7 +39,7 @@ export const MainVideo: React.FC = () => {
         <Part2 />
       </Sequence>
 
-      {/* 第 3 个人负责：幕 7 ～ 幕 10（04:18.384 – 06:14.000，共 3468 帧 / 32 镜） */}
+      {/* 4. 第 3 个人负责：幕 7 ～ 幕 10（04:18.384 – 06:14.000，共 3468 帧 / 32 镜） */}
       <Sequence
         from={part3Start}
         durationInFrames={PART3_DURATION_IN_FRAMES}
@@ -43,6 +47,9 @@ export const MainVideo: React.FC = () => {
       >
         <Part3 />
       </Sequence>
+
+      {/* 5. 全片统一顶层字幕（各组员无需在自己的模块中写字幕） */}
+      <VoxSubtitles offsetFrame={0} />
     </AbsoluteFill>
   );
 };
