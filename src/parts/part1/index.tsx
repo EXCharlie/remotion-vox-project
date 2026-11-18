@@ -13,6 +13,7 @@ import {
   VOX_TOKENS,
 } from "../../design-system";
 import { Act1 } from "./Act1";
+import { Act2 } from "./Act2";
 
 export const PART1_DURATION_IN_FRAMES = 4216; // 00:00 – 02:20.517
 
@@ -32,39 +33,7 @@ export const Part1: React.FC = () => {
           幕 2：一笔算不清的利息（帧 825 – 1814，共 9 镜）
          ───────────────────────────────────────────── */}
       <Sequence from={825} durationInFrames={989} name="Act 2 - Compound Interest">
-        <div
-          style={{
-            position: "relative",
-            zIndex: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            paddingTop: 80,
-            width: "100%",
-          }}
-        >
-          <VoxTitle
-            title="一笔算不清的利息"
-            subtitle="ACT 02 · 复利与极限"
-            fontSize={88}
-            accentBarColor={VOX_TOKENS.colors.retroRed}
-          />
-          <div style={{ marginTop: 40, textAlign: "center" }}>
-            <p style={{ fontFamily: VOX_TOKENS.fonts.body, fontSize: 24 }}>
-              年结 2.000 ➔ 半年结 2.250 ➔ 月结 2.613 ➔ 日结 2.715
-            </p>
-            <div style={{ marginTop: 30 }}>
-              <HighlighterText
-                entryFrame={15}
-                fontSize={48}
-                highlightColor={VOX_TOKENS.colors.retroRed}
-                textColor="#FFF"
-              >
-                (1 + 1/n)ⁿ ➔ 当 n 奔向无穷大
-              </HighlighterText>
-            </div>
-          </div>
-        </div>
+        <Act2 />
       </Sequence>
 
       {/* ─────────────────────────────────────────────
