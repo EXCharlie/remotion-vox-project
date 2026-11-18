@@ -3,7 +3,10 @@ import { AbsoluteFill, Sequence } from "remotion";
 import { Shot1_01 } from "./act1/Shot1_01";
 import { Shot1_02 } from "./act1/Shot1_02";
 import { Shot1_03 } from "./act1/Shot1_03";
-import { VoxTitle, HighlighterText, VOX_TOKENS } from "../../design-system";
+import { Shot1_04 } from "./act1/Shot1_04";
+import { Shot1_05 } from "./act1/Shot1_05";
+import { Shot1_06 } from "./act1/Shot1_06";
+import { Shot1_07 } from "./act1/Shot1_07";
 
 export const Act1: React.FC = () => {
   return (
@@ -30,45 +33,31 @@ export const Act1: React.FC = () => {
       </Sequence>
 
       {/* ────────────────────────────────────────────────
-          镜 1-04 ～ 1-07 (帧 366 – 825, ~15.3s)：日常场景、它凭什么与时间倒带
+          镜 1-04 (帧 366 – 516, ~5.0s)：三个日常场景 · 转账/发烧/放凉咖啡
          ──────────────────────────────────────────────── */}
-      <Sequence from={366} durationInFrames={459} name="Shot 1-04-07 - Bridge to Act 2">
-        <div
-          style={{
-            position: "relative",
-            zIndex: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            paddingTop: 100,
-            width: "100%",
-          }}
-        >
-          <VoxTitle
-            title="它凭什么无处不在？"
-            subtitle="ACT 01 · 探寻源头"
-            fontSize={96}
-            accentBarColor={VOX_TOKENS.colors.highlightYellow}
-          />
+      <Sequence from={366} durationInFrames={150} name="Shot 1-04 - Three Daily Scenes">
+        <Shot1_04 />
+      </Sequence>
 
-          <div style={{ marginTop: 60, maxWidth: 1000, textAlign: "center" }}>
-            <p
-              style={{
-                fontFamily: VOX_TOKENS.fonts.body,
-                fontSize: 28,
-                color: VOX_TOKENS.colors.textMuted,
-                lineHeight: 1.8,
-              }}
-            >
-              更奇怪的是——这个贯穿现代科学的核心常数，最早居然是被一笔银行利息算出来的。
-            </p>
-            <div style={{ marginTop: 40 }}>
-              <HighlighterText entryFrame={20} fontSize={44}>
-                我们把时间往回拨 340 年 ➔ 1683 年瑞士巴塞尔
-              </HighlighterText>
-            </div>
-          </div>
-        </div>
+      {/* ────────────────────────────────────────────────
+          镜 1-05 (帧 516 – 564, ~1.6s)：它凭什么 · 画面收束核心提问
+         ──────────────────────────────────────────────── */}
+      <Sequence from={516} durationInFrames={48} name="Shot 1-05 - Why Everywhere">
+        <Shot1_05 />
+      </Sequence>
+
+      {/* ────────────────────────────────────────────────
+          镜 1-06 (帧 564 – 687, ~4.1s)：被一笔利息算出来 · 羊皮账本与金币掉落
+         ──────────────────────────────────────────────── */}
+      <Sequence from={564} durationInFrames={123} name="Shot 1-06 - Ledger and Coin">
+        <Shot1_06 />
+      </Sequence>
+
+      {/* ────────────────────────────────────────────────
+          镜 1-07 (帧 687 – 825, ~4.6s)：往回拨 340 年 · 年份倒带 2026 到 1683
+         ──────────────────────────────────────────────── */}
+      <Sequence from={687} durationInFrames={138} name="Shot 1-07 - Year Rewind 1683">
+        <Shot1_07 />
       </Sequence>
     </AbsoluteFill>
   );
