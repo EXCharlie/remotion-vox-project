@@ -39,30 +39,43 @@
 - `<TornPaperCutout>`（欧拉肖像剪报白边效果）
 - `<HighlighterText>`（高亮标注 18 位小数）
 
-## 已实现：开场两镜
+## 已完成：Part2 全部 32 镜
 
-以 `src/data/subtitles.ts` 第 38–40 句的全局帧，减去 Part2 起点 4216，得到本地切点：
+延续开场两镜的网格纸、剪报、红色批注和荧光黄高亮。只使用现有 Remotion 与设计系统，无新增依赖；不包含 Part 内音轨或字幕，统一由外层注入。
 
-| 镜号 | Part2 相对帧（左闭右开） | 内容                                                   |
-| ---- | ------------------------ | ------------------------------------------------------ |
-| 5-01 | [0, 126)                 | 对数表、双曲线面积、复利极限三张剪报拍入，青绿连线汇合 |
-| 5-02 | [126, 243)               | 同一桌面上淡化线索，揭示欧拉姓名与荧光黄字母 e         |
+总长度保持 3536 帧，30 fps，1920×1080；所有相对帧均由字幕数据第 38–69 句的全局起点减去 4216 得到。镜尾保持到下一句起点，覆盖句间停顿；同组镜头保持桌面连续，仅改变局部步骤。
 
-第 39 句在相对第 237 帧结束；第二镜保持 6 帧，衔接第 40 句起点 243。
-`OpeningShots.tsx` 负责两个连续镜头；243 帧之后保留原有占位，尚未实现后续分镜。Part2 总时长仍是 3536 帧。
+| 镜头    | 相对帧范围（左闭右开） | 画面                                         |
+| ------- | ---------------------- | -------------------------------------------- |
+| 5-01–02 | [0, 243)               | 原有线索剪报与欧拉登场，保持已确认版本       |
+| 5-03–08 | [243, 850)             | 四年份时间轴、书信证据、正式印刷、理论体系   |
+| 5-09–12 | [850, 1366)            | 划掉姓氏假说，展开两种推测，明确尚无定论     |
+| 5-13–17 | [1366, 1852)           | 极限转级数、逐项显现、倒数缩小、累加值收敛   |
+| 5-18–19 | [1852, 2057)           | 打出18位小数，数轴回扣伯努利区间             |
+| 6-01–04 | [2057, 2542)           | 指数曲线、运动点、切线与高度、ln a 系数      |
+| 6-05–08 | [2542, 3051)           | 增长反馈、菌群到复利、银行与微积分合流       |
+| 6-09–13 | [3051, 3536)           | 双曲线、1至e的面积、自然对数、过渡至万物应用 |
 
-### 本次协作流程
+`scene-kit.tsx` 的 `PART2_SHOTS` 给出全部32镜的逐句边界。历史文献卡均为原创排版示意，不冒充原件；数学图形由 SVG 和确定性的逐帧动画绘制。
 
-1. 从干净的主线检出 `feature/part2` 分支，只改本目录和自己的素材目录。
-2. `npm run dev -- --host=0.0.0.0 --port=3000 --no-open`，在 Studio 选择 Part2；音轨和字幕由外层注入。
-3. `npm run lint`，再执行 `npm run build -- --out-dir=out/bundle`。
-4. 抽帧检查构图与字幕安全区：
-   ```bash
-   npx --no-install remotion still Part2 /tmp/part2-shot1.png --frame=110 --browser-executable=/usr/bin/chromium
-   npx --no-install remotion still Part2 /tmp/part2-shot2.png --frame=200 --browser-executable=/usr/bin/chromium
-   ```
-5. `git diff --check`，检查 `git status --short` 和提交差异仅包含本人负责文件，再暂存并提交。
-6. 首次推送：`git push -u origin feature/part2`；后续在同一分支提交后 `git push`。
-7. 在 GitHub 比较 `main...feature/part2` 并创建 Pull Request，由组长审阅合并。
+### 预览与检查
 
-不要把渲染输出、大素材或依赖目录提交到 Git，也不要把组员分支直接推到 main。
+在仓库根目录执行：
+
+```bash
+npm run dev -- --host=0.0.0.0 --port=3000 --no-open
+npm run lint
+npm run build -- --out-dir=out/part2-review
+```
+
+Studio 选择 **Part2**，可预览全部约118秒的画面及外层配音字幕。按需抽帧：
+
+```bash
+npx --no-install remotion still Part2 /tmp/part2-review.png --frame=3221 --browser-executable=/usr/bin/chromium
+```
+
+`/usr/bin/chromium` 是云环境路径。Windows 使用默认浏览器配置即可，不要带这个参数。完整 MP4 仅在需要导出时执行 `npm run render:p2`。
+
+### 提交流程
+
+在 `feature/part2` 分支修改本人目录；执行类型检查、构建及画面检查后，用 `git diff --check` 和 `git status --short` 核实范围。只暂存本人源文件及说明，再 commit，最后 `git push origin feature/part2`。渲染结果与依赖不提交。通过比较 `main...feature/part2` 创建 PR，交组长审阅合并。
