@@ -14,6 +14,7 @@ import {
 } from "../../design-system";
 import { Act1 } from "./Act1";
 import { Act2 } from "./Act2";
+import { Act3 } from "./Act3";
 
 export const PART1_DURATION_IN_FRAMES = 4216; // 00:00 – 02:20.517
 
@@ -40,56 +41,7 @@ export const Part1: React.FC = () => {
           幕 3：把时间切到无穷细（帧 1814 – 2993，共 10 镜）
          ───────────────────────────────────────────── */}
       <Sequence from={1814} durationInFrames={1179} name="Act 3 - Bernoulli Limit">
-        <div
-          style={{
-            position: "relative",
-            zIndex: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            paddingTop: 80,
-            width: "100%",
-          }}
-        >
-          <VoxTitle
-            title="把时间切到无穷细"
-            subtitle="ACT 03 · 1683 巴塞尔"
-            fontSize={88}
-          />
-          {/* 重点辟谣分屏 */}
-          <div
-            style={{
-              marginTop: 60,
-              padding: "24px 48px",
-              backgroundColor: "#FFF",
-              border: `4px solid ${VOX_TOKENS.colors.retroRed}`,
-              borderRadius: 6,
-              boxShadow: "0 12px 32px rgba(0,0,0,0.15)",
-              textAlign: "center",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: VOX_TOKENS.fonts.editorialSerif,
-                fontSize: 32,
-                fontWeight: 900,
-                color: VOX_TOKENS.colors.retroRed,
-              }}
-            >
-              【史实辟谣】伯努利并没有算出 2.71828！
-            </span>
-            <p
-              style={{
-                fontFamily: VOX_TOKENS.fonts.body,
-                fontSize: 22,
-                color: VOX_TOKENS.colors.textBlack,
-                marginTop: 12,
-              }}
-            >
-              他用二项式定理，第一次证明了结果必然被夹在 <b>2 和 3 之间</b>。
-            </p>
-          </div>
-        </div>
+        <Act3 />
       </Sequence>
 
       {/* ─────────────────────────────────────────────
