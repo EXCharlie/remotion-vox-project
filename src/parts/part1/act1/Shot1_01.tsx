@@ -216,7 +216,7 @@ export const Shot1_01: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          bottom: 70,
+          bottom: 145,
           right: 90,
           display: "flex",
           alignItems: "center",

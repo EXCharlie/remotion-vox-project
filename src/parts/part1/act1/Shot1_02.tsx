@@ -331,11 +331,11 @@ export const Shot1_02: React.FC = () => {
         </div>
       </div>
 
-      {/* 底部小注 */}
+      {/* 底部小注（避开字幕安全区） */}
       <div
         style={{
           position: "absolute",
-          bottom: 50,
+          bottom: 145,
           left: 0,
           right: 0,
           display: "flex",

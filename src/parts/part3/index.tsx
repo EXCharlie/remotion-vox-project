@@ -13,6 +13,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import {
+  HalftoneLayer,
   HighlighterText,
   PaperBackground,
   VOX_TOKENS,
@@ -1585,39 +1586,236 @@ const ClosingLineShot: React.FC<{ shot: string }> = ({ shot }) => {
   );
 };
 
-const QuietEndShot: React.FC = () => (
-  <AbsoluteFill
-    style={{
-      backgroundColor: C.paperLight,
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    <div
-      style={{
-        color: C.inkNavy,
-        font: `900 82px ${VOX_TOKENS.fonts.editorialSerif}`,
-        textAlign: "center",
-      }}
-    >
-      不是发明，是撞见。
-    </div>
+const Act7BridgeComplexShot: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const prog = spring({
+    frame: frame - 10,
+    fps,
+    config: VOX_TOKENS.spring.cameraSmooth,
+  });
+  const angle = interpolate(prog, [0, 1], [0, Math.PI / 3]);
+
+  return (
+    <AbsoluteFill>
+      <ActHeader act="ACT 07" shot="7-09" title="把镜头转向复平面" />
+      <div
+        style={{
+          position: "absolute",
+          top: 240,
+          left: 0,
+          right: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 56,
+        }}
+      >
+        <PaperCard accent={C.inkNavy} style={{ padding: "36px 48px", textAlign: "center" }}>
+          <div style={{ color: C.inkNavy, font: `900 72px ${VOX_TOKENS.fonts.editorialSerif}` }}>
+            eˣ <span style={{ color: C.retroRed, margin: "0 18px" }}>→</span> eⁱᶿ
+          </div>
+          <div
+            style={{
+              marginTop: 14,
+              color: C.textMuted,
+              font: `700 20px ${VOX_TOKENS.fonts.typewriterMono}`,
+              letterSpacing: "0.08em",
+            }}
+          >
+            REAL AXIS ➔ COMPLEX PLANE
+          </div>
+        </PaperCard>
+        <ComplexPlane angle={angle} labelPoint="eⁱᶿ" />
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const Act8SubShot: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const arrow = spring({ frame: frame - 15, fps, config: VOX_TOKENS.spring.punchy });
+
+  return (
+    <AbsoluteFill>
+      <ActHeader act="ACT 08" shot="8-01" title="把 x 换成 iθ" accent={C.retroRed} />
+      <div
+        style={{
+          position: "absolute",
+          top: 300,
+          left: 0,
+          right: 0,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <PaperCard accent={C.retroRed} style={{ padding: "48px 86px", textAlign: "center" }}>
+          <div style={{ color: C.inkNavy, font: `900 84px ${VOX_TOKENS.fonts.editorialSerif}` }}>
+            eˣ
+            <span
+              style={{
+                display: "inline-block",
+                color: C.retroRed,
+                margin: "0 32px",
+                transform: `scale(${arrow})`,
+              }}
+            >
+              →
+            </span>
+            eⁱᶿ
+          </div>
+          <div
+            style={{
+              marginTop: 18,
+              color: C.textMuted,
+              font: `700 20px ${VOX_TOKENS.fonts.typewriterMono}`,
+              letterSpacing: "0.1em",
+            }}
+          >
+            IMAGINARY EXPONENT // 虚数次幂
+          </div>
+        </PaperCard>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const Act8OneLineShot: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const tags = ["指数", "旋转", "加法", "乘法", "零"];
+
+  return (
+    <AbsoluteFill>
+      <ActHeader act="ACT 08" shot="8-07" title="运算，被收在一行字里" accent={C.retroRed} />
+      <div
+        style={{
+          position: "absolute",
+          top: 280,
+          left: 0,
+          right: 0,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <PaperCard accent={C.highlightYellow} style={{ padding: "46px 76px", textAlign: "center" }}>
+          <div style={{ color: C.inkNavy, font: `900 82px ${VOX_TOKENS.fonts.editorialSerif}` }}>
+            e<sup>iπ</sup> + 1 = 0
+          </div>
+          <div style={{ marginTop: 28, display: "flex", justifyContent: "center", gap: 14 }}>
+            {tags.map((tag, i) => {
+              const s = spring({
+                frame: frame - 12 - i * 6,
+                fps,
+                config: VOX_TOKENS.spring.punchy,
+              });
+              return (
+                <span
+                  key={tag}
+                  style={{
+                    backgroundColor: i === 0 ? C.highlightYellow : C.paperWarm,
+                    border: `2px solid ${C.inkNavy}`,
+                    color: C.inkNavy,
+                    font: `700 22px ${VOX_TOKENS.fonts.body}`,
+                    padding: "6px 16px",
+                    transform: `scale(${s})`,
+                    opacity: s,
+                  }}
+                >
+                  {tag}
+                </span>
+              );
+            })}
+          </div>
+        </PaperCard>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const Act9HomeworkShot: React.FC = () => (
+  <AbsoluteFill>
+    <ActHeader act="ACT 09" shot="9-07" title="还在给数学家留作业" accent={C.vintageTeal} />
     <div
       style={{
         position: "absolute",
-        top: "61%",
-        width: 220,
-        height: 9,
-        backgroundColor: C.highlightYellow,
-        transform: "rotate(-1deg)",
+        top: 300,
+        left: 0,
+        right: 0,
+        display: "flex",
+        justifyContent: "center",
       }}
-    />
+    >
+      <PaperCard accent={C.vintageTeal} style={{ padding: "48px 72px", textAlign: "center" }}>
+        <div
+          style={{
+            color: C.retroRed,
+            font: `800 22px ${VOX_TOKENS.fonts.typewriterMono}`,
+            letterSpacing: "0.1em",
+            marginBottom: 14,
+          }}
+        >
+          OPEN PROBLEM // e + π ∈ ℝ \ ℚ ?
+        </div>
+        <div style={{ color: C.inkNavy, font: `900 56px ${VOX_TOKENS.fonts.editorialSerif}` }}>
+          三百多年前的问题，仍未结束
+        </div>
+      </PaperCard>
+    </div>
   </AbsoluteFill>
 );
+
+const FinalEncounterShot: React.FC = () => {
+  const frame = useCurrentFrame();
+  const fadeOut = interpolate(frame, [96, 114], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  return (
+    <AbsoluteFill
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        opacity: fadeOut,
+      }}
+    >
+      <VoxTitle
+        title="不是发明，是撞见。"
+        subtitle="ACT 10 · 全片收束"
+        fontSize={104}
+        accentBarColor={C.highlightYellow}
+      />
+    </AbsoluteFill>
+  );
+};
 
 export const Part3: React.FC = () => (
   <AbsoluteFill>
     <PaperBackground showGrid={true} gridSize={46} />
+
+    {/* 右上角统一半色调网点角标装饰（与 Part 1/2 保持一致的报纸拼贴质感） */}
+    <div
+      style={{
+        position: "absolute",
+        top: -60,
+        right: -40,
+        width: 440,
+        height: 220,
+        opacity: 0.22,
+        pointerEvents: "none",
+        zIndex: 1,
+      }}
+    >
+      <HalftoneLayer
+        color={C.retroRed}
+        dotSize={7}
+        rotation={-10}
+        style={{ width: "100%", height: "100%" }}
+      />
+    </div>
 
     <Sequence from={0} durationInFrames={1153} name="Act 7 - All in Nature">
       <Sequence
@@ -1639,12 +1837,34 @@ export const Part3: React.FC = () => (
         durationInFrames={74}
         name="7-03 Change depends on now"
       >
-        <AbsoluteFill
-          style={{ alignItems: "center", justifyContent: "center" }}
-        >
-          <HighlighterText entryFrame={5} fontSize={58}>
-            变化速度，取决于现在有多少
-          </HighlighterText>
+        <AbsoluteFill>
+          <ActHeader act="ACT 07" shot="7-03" title="同一条规律" />
+          <div
+            style={{
+              position: "absolute",
+              top: 320,
+              left: 0,
+              right: 0,
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <PaperCard accent={C.highlightYellow} style={{ padding: "42px 64px", textAlign: "center" }}>
+              <HighlighterText entryFrame={5} fontSize={54}>
+                变化速度，取决于现在有多少
+              </HighlighterText>
+              <div
+                style={{
+                  marginTop: 18,
+                  color: C.textMuted,
+                  font: `700 19px ${VOX_TOKENS.fonts.typewriterMono}`,
+                  letterSpacing: "0.08em",
+                }}
+              >
+                RATE OF CHANGE ∝ CURRENT AMOUNT
+              </div>
+            </PaperCard>
+          </div>
         </AbsoluteFill>
       </Sequence>
       <Sequence
@@ -1657,23 +1877,27 @@ export const Part3: React.FC = () => (
           <div
             style={{
               position: "absolute",
-              top: 350,
-              width: "100%",
-              textAlign: "center",
+              top: 300,
+              left: 0,
+              right: 0,
+              display: "flex",
+              justifyContent: "center",
             }}
           >
-            <HighlighterText entryFrame={8} fontSize={82}>
-              y(t) = y₀ · eᵏᵗ
-            </HighlighterText>
-            <div
-              style={{
-                marginTop: 38,
-                color: C.textMuted,
-                font: `27px ${VOX_TOKENS.fonts.body}`,
-              }}
-            >
-              初始值 × 指数变化
-            </div>
+            <PaperCard accent={C.retroRed} style={{ padding: "44px 76px", textAlign: "center" }}>
+              <HighlighterText entryFrame={8} fontSize={80}>
+                y(t) = y₀ · eᵏᵗ
+              </HighlighterText>
+              <div
+                style={{
+                  marginTop: 28,
+                  color: C.textMuted,
+                  font: `700 24px ${VOX_TOKENS.fonts.body}`,
+                }}
+              >
+                初始值 × 指数变化
+              </div>
+            </PaperCard>
           </div>
         </AbsoluteFill>
       </Sequence>
@@ -1706,39 +1930,7 @@ export const Part3: React.FC = () => (
         durationInFrames={147}
         name="7-09 Bridge to complex plane"
       >
-        <AbsoluteFill>
-          <ActHeader act="ACT 07" shot="7-09" title="把镜头转向复平面" />
-          <div
-            style={{
-              position: "absolute",
-              top: 280,
-              left: 0,
-              right: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 50,
-            }}
-          >
-            <div
-              style={{
-                color: C.inkNavy,
-                font: `900 76px ${VOX_TOKENS.fonts.editorialSerif}`,
-              }}
-            >
-              eˣ
-            </div>
-            <div
-              style={{
-                color: C.retroRed,
-                font: `900 55px ${VOX_TOKENS.fonts.body}`,
-              }}
-            >
-              x → iθ
-            </div>
-            <ComplexPlane angle={Math.PI / 3} labelPoint="eⁱᶿ" />
-          </div>
-        </AbsoluteFill>
+        <Act7BridgeComplexShot />
       </Sequence>
     </Sequence>
 
@@ -1752,26 +1944,7 @@ export const Part3: React.FC = () => (
         durationInFrames={99}
         name="8-01 Replace x with i theta"
       >
-        <AbsoluteFill>
-          <ActHeader
-            act="ACT 08"
-            shot="8-01"
-            title="把 x 换成 iθ"
-            accent={C.retroRed}
-          />
-          <div
-            style={{
-              position: "absolute",
-              top: 350,
-              width: "100%",
-              textAlign: "center",
-              color: C.inkNavy,
-              font: `900 82px ${VOX_TOKENS.fonts.editorialSerif}`,
-            }}
-          >
-            eˣ　→　eⁱᶿ
-          </div>
-        </AbsoluteFill>
+        <Act8SubShot />
       </Sequence>
       <Sequence
         from={99}
@@ -1823,42 +1996,7 @@ export const Part3: React.FC = () => (
         durationInFrames={118}
         name="8-07 Mathematics in one line"
       >
-        <AbsoluteFill>
-          <ActHeader
-            act="ACT 08"
-            shot="8-07"
-            title="运算，被收在一行字里"
-            accent={C.retroRed}
-          />
-          <div
-            style={{
-              position: "absolute",
-              top: 340,
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 25,
-            }}
-          >
-            <div
-              style={{
-                color: C.inkNavy,
-                font: `900 76px ${VOX_TOKENS.fonts.editorialSerif}`,
-              }}
-            >
-              e<sup>iπ</sup> + 1 = 0
-            </div>
-            <div
-              style={{
-                color: C.retroRed,
-                font: `26px ${VOX_TOKENS.fonts.body}`,
-              }}
-            >
-              指数 · 旋转 · 加法 · 乘法 · 零
-            </div>
-          </div>
-        </AbsoluteFill>
+        <Act8OneLineShot />
       </Sequence>
       <Sequence
         from={714}
@@ -1904,26 +2042,7 @@ export const Part3: React.FC = () => (
         durationInFrames={62}
         name="9-07 Still giving mathematicians homework"
       >
-        <AbsoluteFill>
-          <ActHeader
-            act="ACT 09"
-            shot="9-07"
-            title="还在给数学家留作业"
-            accent={C.vintageTeal}
-          />
-          <div
-            style={{
-              position: "absolute",
-              top: 390,
-              width: "100%",
-              textAlign: "center",
-              color: C.inkNavy,
-              font: `900 56px ${VOX_TOKENS.fonts.editorialSerif}`,
-            }}
-          >
-            三百多年前的问题，仍未结束
-          </div>
-        </AbsoluteFill>
+        <Act9HomeworkShot />
       </Sequence>
     </Sequence>
 
@@ -1983,26 +2102,10 @@ export const Part3: React.FC = () => (
       </Sequence>
       <Sequence
         from={518}
-        durationInFrames={43}
+        durationInFrames={114}
         name="10-06 Not invented, encountered"
       >
-        <AbsoluteFill
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-        >
-          <VoxTitle
-            title="不是发明，是撞见。"
-            subtitle="ACT 10 · 全片收束"
-            fontSize={104}
-            accentBarColor={C.highlightYellow}
-          />
-        </AbsoluteFill>
-      </Sequence>
-      <Sequence from={561} durationInFrames={71} name="10-07 End card">
-        <QuietEndShot />
+        <FinalEncounterShot />
       </Sequence>
     </Sequence>
   </AbsoluteFill>

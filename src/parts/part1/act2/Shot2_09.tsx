@@ -209,11 +209,11 @@ export const Shot2_09: React.FC = () => {
         </div>
       </div>
 
-      {/* 右下角定格年份印章：1683 */}
+      {/* 右下角定格年份印章：1683（避开字幕安全区） */}
       <div
         style={{
           position: "absolute",
-          bottom: 50,
+          bottom: 145,
           right: 80,
           backgroundColor: VOX_TOKENS.colors.inkNavy,
           color: "#FFF",

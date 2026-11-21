@@ -45,6 +45,7 @@ export const RemotionRoot: React.FC = () => {
         fps={fps}
         width={width}
         height={height}
+        defaultProps={{ audioOffsetInSeconds: 0, syncSubtitles: false }}
       />
 
       {/* 2. 同学 1 专属预览 Composition（自带前 0~4216 帧的音频与字幕） */}

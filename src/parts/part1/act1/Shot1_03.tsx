@@ -247,11 +247,11 @@ export const Shot1_03: React.FC = () => {
         </div>
       </div>
 
-      {/* 底部说明性档案栏 */}
+      {/* 底部说明性档案栏（避开字幕安全区） */}
       <div
         style={{
           position: "absolute",
-          bottom: 70,
+          bottom: 145,
           left: 100,
           right: 100,
           display: "flex",
